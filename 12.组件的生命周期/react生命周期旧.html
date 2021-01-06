@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Count extends React.Component{
+            state = {count:0}
+            addCount = () => {
+                let {count} = this.state
+                count += 1
+                this.setState({count}) 
+            }
+            render(){
+                const {count} = this.state
+                return (
+                    <div>
+                        <h2>现在的数字为：{this.state.count}</h2>    
+                        <button onClick={this.addCount}>点我加一</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Count/>,document.getElementById('test'))
+    </script>
+</body>
+
+</html>

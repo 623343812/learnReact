@@ -9,8 +9,7 @@
 
 <body>
     <div id="test"></div>
-    <div id="test1"></div>
-    <div id="test2"></div>
+
 
     <script src="../js/react.development.js"></script>
     <script src="../js/react-dom.development.js"></script>
@@ -19,6 +18,19 @@
 
     <script type='text/babel'>
         class Person extends React.Component {
+            constructor(props) {
+                console.log(props);
+                super(props)
+            }
+            static propTypes = {
+            name:PropTypes.string.isRequired,
+            age:PropTypes.number,
+            sex:PropTypes.string
+        }
+            static defaultProps = {
+            age:18,
+            sex:'男'
+        }
             render () {
                 console.log(this);
                 const {name,age,sex} = this.props
@@ -31,20 +43,9 @@
                 )
             }
         }
-        Person.propTypes = {
-            name:PropTypes.string.isRequired,
-            age:PropTypes.number,
-            sex:PropTypes.string
-        }
-        Person.defaultProps = {
-            age:18,
-            sex:'男'
-        }
-        ReactDOM.render(<Person name="csv" age={18}/>,document.getElementById('test'))
-        ReactDOM.render(<Person name="www" sex="male"/>,document.getElementById('test1'))
 
-        const p = {name:'xxx',age:18,sex:'男'}
-        ReactDOM.render(<Person {...p}/>,document.getElementById('test2'))
+        ReactDOM.render(<Person name="jeru"/>,document.getElementById('test'))
+
     </script>
 </body>
 
