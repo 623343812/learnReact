@@ -36,7 +36,41 @@
                 )
             }
         }
-        ReactDOM.render(<Count/>,document.getElementById('test'))
+        class A extends React.Component{
+            state = {carName:'奔驰'}
+            changeCar = () =>{
+                this.setState({carName:'奥托'})
+            }
+            render() {
+                return (
+                    <div>
+                        <div>A</div>
+                        <button onClick={this.changeCar}>换</button>
+                        <B carName={this.state.carName}/>
+                    </div>
+                )
+            }
+        }
+        class B extends React.Component{
+            componentWillReceiveProps(){
+                console.log('bbb');
+            }
+            shouldComponentUpdate(){
+                return true
+            }
+            componentWillUpdate()  {
+
+            }
+
+            render() {
+                return (
+                    <div>B{this.props.carName}</div>
+                )
+            }
+            componentDidUpdate(){}
+        }
+        
+        ReactDOM.render(<A/>,document.getElementById('test'))
     </script>
 </body>
 

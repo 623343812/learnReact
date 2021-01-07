@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script src="../js/17.0.1/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作DOM -->
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转为js -->
+    <script src="../js/17.0.1/babel.min.js"></script>
+
+    <script type="text/babel"> 
+        class Person extends React.Component{
+            state = {
+                person:[
+                    {id:1,name:'lxt',age:18},
+                    {id:2,name:'zy',age:19}
+                ]
+            }
+            add = () => {
+                const {person} = this.state
+                const p = {id:person.length+1,name:'小王',age:20}
+                this.setState({person:[p,...person]})
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>展示人员信息</h2>
+                        <h3>使用index作为key</h3>
+                        <button onClick={this.add}>添加一个小王</button>
+                        <ul>{this.state.person.map((personObj,i)=>{
+                            return <li key={i}>{personObj.name}---{personObj.age} <input type="text"/></li>
+                        })}</ul>  
+                        <hr/>  
+                        <hr/>  
+                        <h3>使用id值作为key</h3>
+                        <ul>{this.state.person.map((personObj)=>{
+                            return <li key={personObj.id}>{personObj.name}---{personObj.age}<input type="text"/></li>
+                        })}</ul>    
+                    </div>
+                )
+            }
+        }  
+        ReactDOM.render(<Person/>,document.getElementById('test')) 
+    </script>
+</body>
+</html>
